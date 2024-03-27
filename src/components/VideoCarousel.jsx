@@ -217,17 +217,19 @@ const VideoCarousel = () => {
           ))}
         </div>
 
-        <button className="control-btn">
+        <button
+          className="control-btn"
+          onClick={
+            isLastVideo
+              ? () => processHandler("video-reset")
+              : !isPlaying
+              ? () => processHandler("video-play")
+              : () => processHandler("video-pause")
+          }
+        >
           <img
-            src={isEnd ? replayImg : !isPlaying ? playImg : pauseImg}
-            alt={isEnd ? "replay" : !isPlaying ? "play" : " pause"}
-            onClick={() =>
-              isLastVideo
-                ? processHandler("video-reset")
-                : !isPlaying
-                ? processHandler("video-play")
-                : processHandler("video-pause")
-            }
+            src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
+            alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
           />
         </button>
       </div>
